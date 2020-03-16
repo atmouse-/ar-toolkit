@@ -2,6 +2,7 @@
 
 import sys
 import os
+import subprocess
 from os import listdir
 from os.path import isfile, join
 
@@ -67,7 +68,7 @@ if __name__ == "__main__":
     
     root_snapshot = [f for f in listdir("/mnt/root") if f.startswith("rootfs-")]
     udisk_snapshot = [f for f in listdir("/mnt/udisk/rootfs") if f.startswith("rootfs-")]
-    _mixmax_snapshot = get_last_snapshot(root_snapshot and udisk_snapshot)
+    _mixmax_snapshot = get_last_snapshot(list(set(root_snapshot).intersection(udisk_snapshot)))
     _last_snapshot = get_last_snapshot(udisk_snapshot)
 
     if _last_snapshot > _mixmax_snapshot:
