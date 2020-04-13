@@ -13,6 +13,9 @@ cat /etc/mtab | awk '{print $2}' | grep -E "^/mnt/root/?" && exit 1
 # checkif boot exist
 [ -e /dev/disk/by-uuid/AF95-DC3C ] || exit 1
 
+# checkif /boot mounted
+findmnt /boot -o UUID -fn | grep AF95-DC3C || exit 1
+
 # mount btrfs to /mnt/root
 mount -o subvolid=5 /dev/disk/by-uuid/ac4e124b-ad99-4392-b162-c82fb2975efc /mnt/root || exit 1
 
