@@ -20,6 +20,7 @@ function get_package_all() {
 }
 
 function is_package_exist() {
+	# TODO: check app fullname
 	cat $PKGLIST_INSTALLED | grep $1
 }
 
@@ -28,6 +29,7 @@ function get_package_uid() {
 }
 
 function pkg_clean_data() {
+	# TODO: check related $1 path
 	if [ x"$1" = "x" ];then
 		echo "arguments error" >&2
 		exit 1
@@ -38,6 +40,7 @@ function pkg_clean_data() {
 }
 
 function pkg_restore() {
+	# TODO: check related $1 path
 	if [ x"$1" = "x" ];then
 		echo "arguments error" >&2
 		exit 1
