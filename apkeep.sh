@@ -34,6 +34,7 @@ function pkg_clean_data() {
 		echo "arguments error" >&2
 		exit 1
 	fi
+	/usr/bin/adb </dev/null shell am force-stop $1
 	/usr/bin/adb </dev/null shell rm -rf /data/data/$1
 	/usr/bin/adb </dev/null shell rm -rf /sdcard/Android/data/$1
 	/usr/bin/adb </dev/null shell rm -rf /sdcard/Android/obb/$1
