@@ -8,7 +8,7 @@
 cat /etc/mtab | awk '{print $2}' | grep -E "^/mnt/root/?" && exit 1
 
 # checkif subvolume exist
-[ -e /dev/disk/by-uuid/ac4e124b-ad99-4392-b162-c82fb2975efc ] || exit 1
+[ -e /dev/disk/by-label/ROOT-OPTIPLEX ] || exit 1
 
 # checkif boot exist
 [ -e /dev/disk/by-uuid/AF95-DC3C ] || exit 1
@@ -17,7 +17,7 @@ cat /etc/mtab | awk '{print $2}' | grep -E "^/mnt/root/?" && exit 1
 findmnt /boot -o UUID -fn | grep AF95-DC3C || exit 1
 
 # mount btrfs to /mnt/root
-mount -o subvolid=5 /dev/disk/by-uuid/ac4e124b-ad99-4392-b162-c82fb2975efc /mnt/root || exit 1
+mount -o subvolid=5 /dev/disk/by-label/ROOT-OPTIPLEX /mnt/root || exit 1
 
 # check current rootfs not subvolid 5
 btrfs subvolume show / | grep "Subvolume ID" | grep -E "\b5\b" && exit 1
