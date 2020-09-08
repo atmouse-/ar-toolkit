@@ -63,8 +63,8 @@ def limit_color(color):
 def fetch_bing_bg():
     html = urllib.request.urlopen("https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US").read().decode('utf-8')
     _j = json.loads(html)
-    _url = _j['images'][0]['url']
-    url = "http://cn.bing.com" + _url
+    urlbase = _j['images'][0]['urlbase']
+    url = "http://cn.bing.com" + urlbase + "_UHD.jpg"
     return BytesIO(
         urllib.request.urlopen(url).read()
     )
