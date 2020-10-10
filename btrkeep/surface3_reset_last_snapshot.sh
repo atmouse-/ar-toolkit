@@ -8,13 +8,13 @@
 cat /etc/mtab | awk '{print $2}' | grep -E "^/mnt/root/?" && exit 1
 
 # checkif subvolume exist
-[ -e /dev/disk/by-uuid/5857fa1c-3e8f-4690-9624-ccad0b49a22b ] || exit 1
+[ -e /dev/disk/by-label/ROOT-SURFACE3 ] || exit 1
 
 # checkif boot exist
-[ -e /dev/disk/by-uuid/6383-2B62 ] || exit 1
+[ -e /dev/disk/by-uuid/4191-8BA9 ] || exit 1
 
 # mount btrfs to /mnt/root
-mount -o subvolid=5 /dev/disk/by-uuid/5857fa1c-3e8f-4690-9624-ccad0b49a22b /mnt/root || exit 1
+mount -o subvolid=5 /dev/disk/by-label/ROOT-SURFACE3 /mnt/root || exit 1
 
 # check current rootfs not subvolid 5
 btrfs subvolume show / | grep "Subvolume ID" | grep -E "\b5\b" && exit 1
