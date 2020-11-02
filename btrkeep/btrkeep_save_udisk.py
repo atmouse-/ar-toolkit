@@ -94,7 +94,7 @@ if __name__ == "__main__":
 
     if _last_snapshot > _mixmax_snapshot:
         if UDISK_TYPE == "crypto_LUKS":
-            cmd = "btrfs send -p /mnt/root/{0} /mnt/root/{1} | btrfs receive /mnt/udisk/".format(_mixmax_snapshot, _last_snapshot)
+            cmd = "btrfs send -pv /mnt/root/{0} /mnt/root/{1} | btrfs receive /mnt/udisk/".format(_mixmax_snapshot, _last_snapshot)
             print(cmd)
             os.system(cmd)
             os.system("sync")
